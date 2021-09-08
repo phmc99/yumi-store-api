@@ -1,29 +1,29 @@
-const mongoose = require("../database/index");
+const mongoose = require("../../database/index");
 const bcrypt = require("bcryptjs");
 
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
-    require: true,
+    required: true,
   },
   cpf: {
     type: String,
-    require: true,
+    required: true,
     unique: true,
     select: false,
   },
   email: {
     type: String,
-    require: true,
+    required: true,
     unique: true,
   },
   phone: {
     type: String,
-    require: true,
+    required: true,
   },
   password: {
     type: String,
-    require: true,
+    required: true,
     select: false,
   },
   address: {
