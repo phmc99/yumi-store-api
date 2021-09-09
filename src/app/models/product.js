@@ -27,16 +27,16 @@ const ProductSchema = new mongoose.Schema({
   },
   sizes: {
     type: Array,
-    required: true,
+    require: true,
   },
   rating: {
     type: Object,
-    required: true,
+    require: true,
   },
   image_url: [
     {
       type: String,
-      required: true,
+      require: true,
     },
   ],
   createdAt: {
