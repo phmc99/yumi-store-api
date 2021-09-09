@@ -10,4 +10,4 @@ app.use(cors);
 require("./app/controllers/index")(app);
 
 console.log("API está funcionando!");
-app.listen(3001);
+app.listen(process.env.PORT || 3001);
