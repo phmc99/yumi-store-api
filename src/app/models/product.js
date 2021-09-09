@@ -3,40 +3,40 @@ const mongoose = require("../../database/index");
 const ProductSchema = new mongoose.Schema({
   name: {
     type: String,
-    require: true,
+    required: true,
   },
   description: {
     type: String,
-    require: true,
+    required: true,
   },
   category: {
     type: Number,
-    require: true,
+    required: true,
   },
   specie: {
     type: String,
-    require: true,
+    required: true,
   },
   price: {
     type: String,
-    require: true,
+    required: true,
   },
   member_price: {
     type: String,
-    require: true,
+    required: true,
   },
   sizes: {
     type: Array,
-    require: true,
+    required: true,
   },
   rating: {
     type: Object,
-    require: true,
+    required: true,
   },
   image_url: [
     {
       type: String,
-      require: true,
+      required: true,
     },
   ],
   createdAt: {

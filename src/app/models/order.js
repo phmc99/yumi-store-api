@@ -4,22 +4,22 @@ const OrderSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    require: true,
+    required: true,
   },
 
   total_price: {
     type: String,
-    require: true,
+    required: true,
   },
   payment: {
     type: Object,
-    require: true,
+    required: true,
   },
   cart: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "ProductCart",
-      require: true,
+      required: true,
     },
   ],
   createdAt: {
