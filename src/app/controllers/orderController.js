@@ -26,7 +26,7 @@ router.get("/:orderId", async (req, res) => {
     ]);
 
     return res.send({ order });
-  } catch {
+  } catch (err) {
     return res.status(400).send({ error: "Error loading order" });
   }
 });
@@ -86,7 +86,6 @@ router.put("/:orderId", async (req, res) => {
 
     return res.send({ order });
   } catch (err) {
-    console.log(err);
     return res.status(400).send({ error: "Error updating new order" });
   }
 });
