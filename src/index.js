@@ -1,11 +1,12 @@
 const express = require("express");
-var cors = require("cors");
+const cors = require("cors");
+require("express-async-errors");
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors());
 
 app.get("/", (req, res) => {
   return res.send({ message: "Yumi Store API" });
