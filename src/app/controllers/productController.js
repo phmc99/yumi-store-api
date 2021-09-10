@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
     const product = await Product.create(req.body);
     return res.send({ product });
   } catch (err) {
-    return res.status(400).send({ error: "Error creating product" });
+    return res.status(400).send({ error: err });
   }
 });
 
