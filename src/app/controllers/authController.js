@@ -14,39 +14,47 @@ const generateToken = (params = {}) => {
 };
 
 router.post("/register", async (req, res) => {
-  const { email, cpf } = req.body;
-  if (await User.findOne({ email })) {
-    return res.status(400).send({ error: "User e-mail already exists" });
+  try {
+    const { email, cpf } = req.body;
+    if (await User.findOne({ email })) {
+      return res.status(400).send({ error: "User e-mail already exists" });
+    }
+    if (await User.findOne({ cpf })) {
+      return res.status(400).send({ error: "User cpf already exists" });
+    }
+
+    const user = await User.create(req.body);
+
+    user.cpf = undefined;
+    user.password = undefined;
+
+    return res.send({ user, token: generateToken({ id: user.id }) });
+  } catch (err) {
+    return res.status(400).send({ error: "Error registration failed" });
   }
-  if (await User.findOne({ cpf })) {
-    return res.status(400).send({ error: "User cpf already exists" });
-  }
-
-  const user = await User.create(req.body);
-
-  user.cpf = undefined;
-  user.password = undefined;
-
-  return res.send({ user, token: generateToken({ id: user.id }) });
 });
 
 router.post("/login", async (req, res) => {
-  const { email, password } = req.body;
+  try {
+    const { email, password } = req.body;
 
-  const user = await User.findOne({ email }).select("+password");
+    const user = await User.findOne({ email }).select("+password");
 
-  if (!user) {
-    return res.status(400).send({ error: "User not found" });
+    if (!user) {
+      return res.status(400).send({ error: "User not found" });
+    }
+
+    if (!(await bcrypt.compare(password, user.password))) {
+      return res.status(400).send({ error: "Invalid password" });
+    }
+
+    user.cpf = undefined;
+    user.password = undefined;
+
+    return res.send({ user, token: generateToken({ id: user.id }) });
+  } catch (err) {
+    return res.status(400).send({ error: "Error login failed" });
   }
-
-  if (!(await bcrypt.compare(password, user.password))) {
-    return res.status(400).send({ error: "Invalid password" });
-  }
-
-  user.cpf = undefined;
-  user.password = undefined;
-
-  res.send({ user, token: generateToken({ id: user.id }) });
 });
 
 module.exports = (app) => app.use("/auth", router);
