@@ -42,8 +42,8 @@ API desenvolvida com Node, Express e MongoDB, para armazenar os dados necessario
  - Products -> GET, POST, PUT, DELETE
   ```
   {
-	  "name": "Cama M1 Urban Puppy para Cães Microfibra Lisa Marinho",
-    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    "name": "Cama M1 Urban Puppy para Cães Microfibra Lisa Marinho",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
     "category": 1,
     "specie": "cachorro",
     "sizes": ["P", "M", "G"],
@@ -59,17 +59,17 @@ API desenvolvida com Node, Express e MongoDB, para armazenar os dados necessario
 - Orders -> GET, POST, PUT, DELETE *precisa do token de autenticação*
   ```
   {
-	"cart": [
-   {
-     "productId": "1",
-     "size": "P",
-     "quantity": 2
+    "cart": [
+     {
+       "productId": "1",
+       "size": "P",
+       "quantity": 2
+     }
+    ],
+    "total_price": "110.0",
+    "payment": {
+      "method": "credit card",
+      "isPaid": true
+     }
    }
-  ],
-  "total_price": "110.0",
-  "payment": {
-    "method": "credit card",
-    "isPaid": true
-   }
-  }
  ```
