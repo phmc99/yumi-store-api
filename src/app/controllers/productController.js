@@ -24,34 +24,22 @@ router.get("/:productId", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  try {
-    const product = await Product.create(req.body);
-    return res.send({ product });
-  } catch (err) {
-    return res.status(400).send({ error: "Error creating new product" });
-  }
+  const product = await Product.create(req.body);
+  return res.send({ product });
 });
 
 router.put("/:productId", async (req, res) => {
-  try {
-    const product = await Product.findByIdAndUpdate(req.params.productId, {
-      ...req.body,
-      new: true,
-    });
+  const product = await Product.findByIdAndUpdate(req.params.productId, {
+    ...req.body,
+    new: true,
+  });
 
-    return res.send({ product });
-  } catch (err) {
-    return res.status(400).send({ error: "Error updating product" });
-  }
+  return res.send({ product });
 });
 
 router.delete("/:productId", async (req, res) => {
-  try {
-    await Product.findByIdAndRemove(req.params.productId);
-    return res.send({ message: "Product deleted" });
-  } catch (err) {
-    return res.status(400).send({ error: "Error deleting product" });
-  }
+  await Product.findByIdAndRemove(req.params.productId);
+  return res.send({ message: "Product deleted" });
 });
 
 module.exports = (app) => app.use("/products", router);

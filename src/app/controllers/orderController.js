@@ -32,71 +32,58 @@ router.get("/:orderId", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  try {
-    const { cart, total_price, payment } = req.body;
+  const { cart, total_price, payment } = req.body;
 
-    const order = await Order.create({
-      user: req.userId,
-      total_price,
-      payment,
-    });
+  const order = await Order.create({
+    user: req.userId,
+    total_price,
+    payment,
+  });
 
-    await Promise.all(
-      cart.map(async (product) => {
-        const orderCart = new ProductCart({ ...product, order: order._id });
-        await orderCart.save();
-        order.cart.push(orderCart);
-      })
-    );
+  await Promise.all(
+    cart.map(async (product) => {
+      const orderCart = new ProductCart({ ...product, order: order._id });
+      await orderCart.save();
+      order.cart.push(orderCart);
+    })
+  );
 
-    await order.save();
+  await order.save();
 
-    return res.send({ order });
-  } catch (err) {
-    console.log(err);
-    return res.status(400).send({ error: "Error creating new order" });
-  }
+  return res.send({ order });
 });
 
 router.put("/:orderId", async (req, res) => {
-  try {
-    const { cart, total_price, payment } = req.body;
+  const { cart, total_price, payment } = req.body;
 
-    const order = await Order.findByIdAndUpdate(
-      req.params.orderId,
-      {
-        total_price,
-        payment,
-      },
-      { new: true }
-    );
+  const order = await Order.findByIdAndUpdate(
+    req.params.orderId,
+    {
+      total_price,
+      payment,
+    },
+    { new: true }
+  );
 
-    order.cart = [];
-    await ProductCart.deleteMany({ order: order._id });
+  order.cart = [];
+  await ProductCart.deleteMany({ order: order._id });
 
-    await Promise.all(
-      cart.map(async (product) => {
-        const orderCart = new ProductCart({ ...product, order: order._id });
-        await orderCart.save();
-        order.cart.push(orderCart);
-      })
-    );
+  await Promise.all(
+    cart.map(async (product) => {
+      const orderCart = new ProductCart({ ...product, order: order._id });
+      await orderCart.save();
+      order.cart.push(orderCart);
+    })
+  );
 
-    await order.save();
+  await order.save();
 
-    return res.send({ order });
-  } catch (err) {
-    return res.status(400).send({ error: "Error updating new order" });
-  }
+  return res.send({ order });
 });
 
 router.delete("/:orderId", async (req, res) => {
-  try {
-    await Order.findByIdAndRemove(req.params.orderId);
-    return res.send({ message: "Order deleted" });
-  } catch (err) {
-    return res.status(400).send({ error: "Error deleting order" });
-  }
+  await Order.findByIdAndRemove(req.params.orderId);
+  return res.send({ message: "Order deleted" });
 });
 
 module.exports = (app) => app.use("/orders", router);

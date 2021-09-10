@@ -15,23 +15,19 @@ const generateToken = (params = {}) => {
 
 router.post("/register", async (req, res) => {
   const { email, cpf } = req.body;
-  try {
-    if (await User.findOne({ email })) {
-      return res.status(400).send({ error: "User e-mail already exists" });
-    }
-    if (await User.findOne({ cpf })) {
-      return res.status(400).send({ error: "User cpf already exists" });
-    }
-
-    const user = await User.create(req.body);
-
-    user.cpf = undefined;
-    user.password = undefined;
-
-    return res.send({ user, token: generateToken({ id: user.id }) });
-  } catch (err) {
-    return res.status(400).send({ error: "Registration failed" });
+  if (await User.findOne({ email })) {
+    return res.status(400).send({ error: "User e-mail already exists" });
   }
+  if (await User.findOne({ cpf })) {
+    return res.status(400).send({ error: "User cpf already exists" });
+  }
+
+  const user = await User.create(req.body);
+
+  user.cpf = undefined;
+  user.password = undefined;
+
+  return res.send({ user, token: generateToken({ id: user.id }) });
 });
 
 router.post("/login", async (req, res) => {
