@@ -4,12 +4,16 @@ API desenvolvida com Node, Express e MongoDB, para armazenar os dados necessario
 
 ### Endpoints:
 
-- /register -> Registro de usuario
-- /login -> Logar o usuario
+- /auth/register -> Registro de usuario
+- /auth/login -> Logar o usuario
 - /products -> GET e POST dos produtos
 - /products/:productId -> GET, PUT e DELETE dos produtos
 - /orders -> GET e POST dos pedidos *endpoint necessita de autenticação*
 - /orders/:oerderId -> GET, PUT e DELETE dos pedidos *endpoint necessita de autenticação*
+- /payment/checkout/:id/:email/:description/:amount -> GET para fazer a comunicação com o mercadopago
+- /payment/success -> GET para pagina de sucesso
+- /payment/failure -> GET para pagina de falha
+- /payment/pending -> GET para pagina de pendente
 
 ### Corpo das requisições:
 
@@ -72,4 +76,8 @@ API desenvolvida com Node, Express e MongoDB, para armazenar os dados necessario
       "isPaid": true
      }
    }
- ```
+  ```
+- Payments -> GET
+  ```
+    .../payment/checkout/:id/:email/:description/:amount
+  ```
