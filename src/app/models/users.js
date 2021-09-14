@@ -30,6 +30,10 @@ const UserSchema = new mongoose.Schema({
     type: Object,
     required: true,
   },
+  yumiClub: {
+    type: Boolean,
+    default: false,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

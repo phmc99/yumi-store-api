@@ -57,4 +57,27 @@ router.post("/login", async (req, res) => {
   }
 });
 
+router.put("/user/:userId", async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(req.params.userId, {
+      ...req.body,
+      new: true,
+    });
+
+    return res.send({ user });
+  } catch (err) {
+    return res.status(400).send({ error: "Error changing user" });
+  }
+});
+
+router.get("/user/:userId", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+
+    return res.send({ user });
+  } catch (err) {
+    return res.status(400).send({ error: "Error loading user" });
+  }
+});
+
 module.exports = (app) => app.use("/auth", router);
