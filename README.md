@@ -6,6 +6,8 @@ API desenvolvida com Node, Express e MongoDB, para armazenar os dados necessario
 
 - /auth/register -> Registro de usuario
 - /auth/login -> Logar o usuario
+- /auth/user/id -> GET dos dados do usuario
+- /auth/user/id -> PUT dos dados do usuario
 - /products -> GET e POST dos produtos
 - /products/:productId -> GET, PUT e DELETE dos produtos
 - /orders -> GET e POST dos pedidos *endpoint necessita de autenticação*
