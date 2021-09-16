@@ -1,12 +1,8 @@
 const mongoose = require("../../database/index");
 
 const ProductCartSchema = new mongoose.Schema({
-  productId: {
-    type: String,
-    required: true,
-  },
-  size: {
-    type: String,
+  product: {
+    type: Object,
     required: true,
   },
   quantity: {
