@@ -17,4 +17,4 @@ router.get("/failure", (req, res) => {
   return res.render("failure_screen");
 });
 
-module.exports = (app) => app.use("/payment", router);
+module.exports = (app) => app.use("/payments", router);
