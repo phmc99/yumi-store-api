@@ -1,6 +1,7 @@
 # API - YumiStore
 
 API desenvolvida com Node, Express e MongoDB, para armazenar os dados necessarios para construção da aplicação Yumi Store.
+Link do deploy: https://yumistoreapi.herokuapp.com/
 
 ### Endpoints:
 
