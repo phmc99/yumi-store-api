@@ -47,6 +47,7 @@ Link do deploy: https://yumistoreapi.herokuapp.com/
   }
   ```
  - Products -> GET, POST, PUT, DELETE
+ - GET - *rota com paginação* ```/products?page=1&perPage=15 ```
   ```
   {
     "name": "Cama M1 Urban Puppy para Cães Microfibra Lisa Marinho",
@@ -64,6 +65,7 @@ Link do deploy: https://yumistoreapi.herokuapp.com/
    }
   ```
 - Orders -> GET, POST, PUT, DELETE *precisa do token de autenticação*
+- GET - *rota com paginação* ```/products?page=1&perPage=15 ```
   ```
   {
     "cart": [
