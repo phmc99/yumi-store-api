@@ -2,10 +2,11 @@
   "name": "yumi-store-node",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/index.js"
+    "start": "node src/server.js",
+    "dev": "npx nodemon src/server.js"
   },
   "keywords": [],
   "author": "",
@@ -18,15 +19,15 @@
     "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
-    "express-async-errors": "^3.1.1",
-    "fs": "^0.0.1-security",
     "jsonwebtoken": "^8.5.1",
     "mercadopago": "^1.5.8",
     "mongoose": "^6.0.5",
-    "path": "^0.12.7",
     "yargs": "^17.1.1"
   },
   "engines": {
     "node": "16.x"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.14"
   }
 }
