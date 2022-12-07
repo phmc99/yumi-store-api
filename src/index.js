@@ -21,4 +21,4 @@ app.get("/", (req, res) => {
 require("./app/controllers/index")(app);
 
 console.log("API está funcionando!");
-app.listen(process.env.PORT || 3001);
+app.listen(process.env.PORT || 5001);
